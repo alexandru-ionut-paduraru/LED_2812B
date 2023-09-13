@@ -51,6 +51,7 @@
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/gpio/plib_gpio.h"
 #include "peripheral/evic/plib_evic.h"
+#include "peripheral/dmac/plib_dmac.h"
 #include "peripheral/spi/spi_master/plib_spi1_master.h"
 #include "peripheral/uart/plib_uart6.h"
 #include "app.h"

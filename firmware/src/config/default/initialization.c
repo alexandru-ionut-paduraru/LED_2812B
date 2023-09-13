@@ -177,6 +177,8 @@ void SYS_Initialize ( void* data )
 
 	GPIO_Initialize();
 
+    DMAC_Initialize();
+
 	SPI1_Initialize();
 
 	UART6_Initialize();
