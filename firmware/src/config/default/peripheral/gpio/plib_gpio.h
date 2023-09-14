@@ -62,6 +62,87 @@
 // *****************************************************************************
 
 
+/*** Macros for LED_R pin ***/
+#define LED_R_Set()               (LATBSET = (1<<7))
+#define LED_R_Clear()             (LATBCLR = (1<<7))
+#define LED_R_Toggle()            (LATBINV= (1<<7))
+#define LED_R_OutputEnable()      (TRISBCLR = (1<<7))
+#define LED_R_InputEnable()       (TRISBSET = (1<<7))
+#define LED_R_Get()               ((PORTB >> 7) & 0x1)
+#define LED_R_PIN                  GPIO_PIN_RB7
+
+/*** Macros for LED_G pin ***/
+#define LED_G_Set()               (LATBSET = (1<<8))
+#define LED_G_Clear()             (LATBCLR = (1<<8))
+#define LED_G_Toggle()            (LATBINV= (1<<8))
+#define LED_G_OutputEnable()      (TRISBCLR = (1<<8))
+#define LED_G_InputEnable()       (TRISBSET = (1<<8))
+#define LED_G_Get()               ((PORTB >> 8) & 0x1)
+#define LED_G_PIN                  GPIO_PIN_RB8
+
+/*** Macros for LED_B pin ***/
+#define LED_B_Set()               (LATBSET = (1<<9))
+#define LED_B_Clear()             (LATBCLR = (1<<9))
+#define LED_B_Toggle()            (LATBINV= (1<<9))
+#define LED_B_OutputEnable()      (TRISBCLR = (1<<9))
+#define LED_B_InputEnable()       (TRISBSET = (1<<9))
+#define LED_B_Get()               ((PORTB >> 9) & 0x1)
+#define LED_B_PIN                  GPIO_PIN_RB9
+
+/*** Macros for CS1 pin ***/
+#define CS1_Set()               (LATDSET = (1<<9))
+#define CS1_Clear()             (LATDCLR = (1<<9))
+#define CS1_Toggle()            (LATDINV= (1<<9))
+#define CS1_OutputEnable()      (TRISDCLR = (1<<9))
+#define CS1_InputEnable()       (TRISDSET = (1<<9))
+#define CS1_Get()               ((PORTD >> 9) & 0x1)
+#define CS1_PIN                  GPIO_PIN_RD9
+
+/*** Macros for LED_2 pin ***/
+#define LED_2_Set()               (LATKSET = (1<<7))
+#define LED_2_Clear()             (LATKCLR = (1<<7))
+#define LED_2_Toggle()            (LATKINV= (1<<7))
+#define LED_2_OutputEnable()      (TRISKCLR = (1<<7))
+#define LED_2_InputEnable()       (TRISKSET = (1<<7))
+#define LED_2_Get()               ((PORTK >> 7) & 0x1)
+#define LED_2_PIN                  GPIO_PIN_RK7
+
+/*** Macros for BTN1 pin ***/
+#define BTN1_Set()               (LATJSET = (1<<4))
+#define BTN1_Clear()             (LATJCLR = (1<<4))
+#define BTN1_Toggle()            (LATJINV= (1<<4))
+#define BTN1_OutputEnable()      (TRISJCLR = (1<<4))
+#define BTN1_InputEnable()       (TRISJSET = (1<<4))
+#define BTN1_Get()               ((PORTJ >> 4) & 0x1)
+#define BTN1_PIN                  GPIO_PIN_RJ4
+
+/*** Macros for BTN2 pin ***/
+#define BTN2_Set()               (LATJSET = (1<<5))
+#define BTN2_Clear()             (LATJCLR = (1<<5))
+#define BTN2_Toggle()            (LATJINV= (1<<5))
+#define BTN2_OutputEnable()      (TRISJCLR = (1<<5))
+#define BTN2_InputEnable()       (TRISJSET = (1<<5))
+#define BTN2_Get()               ((PORTJ >> 5) & 0x1)
+#define BTN2_PIN                  GPIO_PIN_RJ5
+
+/*** Macros for BTN3 pin ***/
+#define BTN3_Set()               (LATJSET = (1<<6))
+#define BTN3_Clear()             (LATJCLR = (1<<6))
+#define BTN3_Toggle()            (LATJINV= (1<<6))
+#define BTN3_OutputEnable()      (TRISJCLR = (1<<6))
+#define BTN3_InputEnable()       (TRISJSET = (1<<6))
+#define BTN3_Get()               ((PORTJ >> 6) & 0x1)
+#define BTN3_PIN                  GPIO_PIN_RJ6
+
+/*** Macros for LED_1 pin ***/
+#define LED_1_Set()               (LATJSET = (1<<7))
+#define LED_1_Clear()             (LATJCLR = (1<<7))
+#define LED_1_Toggle()            (LATJINV= (1<<7))
+#define LED_1_OutputEnable()      (TRISJCLR = (1<<7))
+#define LED_1_InputEnable()       (TRISJSET = (1<<7))
+#define LED_1_Get()               ((PORTJ >> 7) & 0x1)
+#define LED_1_PIN                  GPIO_PIN_RJ7
+
 
 // *****************************************************************************
 /* GPIO Port

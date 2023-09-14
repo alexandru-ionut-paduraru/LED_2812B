@@ -51,7 +51,7 @@ void GUI_FSM(void){
     //char readChar;
     //static bool readRequested=false;
     static char strToSend[1024];
-    static char recivedString[1024];
+    static char receivedString[1024];
     static uint16_t recLength=0; //length of the received string
     uint16_t index=0;
     char strAux[50];
@@ -95,7 +95,7 @@ void GUI_FSM(void){
                 if(!gui.commandError){
                     switch(gui.crtCommand){
                         case 'i':
-                            UART6_Write("iFM_RADIO\r", 10);
+                            UART6_Write("iWCMCU2812B\r", 12);
                             break;
                         case 'v':
                             UART6_Write("v00.1\r", 6);
@@ -166,38 +166,6 @@ void GUI_FSM(void){
                                                 break;  
                                         }
                                         break;
-                                    case 1: //ADC related registers
-                                        switch (registerIndex){
-                                            case 0: //prescalar
-//                                                strcat(strToSend, "1,");
-//                                                sprintf(strAux, "%u\r", ADC1.Params.PSC);
-//                                                strcat(strToSend, strAux);
-                                                break;
-                                            case 11: //Channels to scan
-//                                                strcat(strToSend, "2,");
-//                                                sprintf(strAux, "%u,", (ADC1.Params.ChannelsToScan>>8)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u\r", ADC1.Params.ChannelsToScan&0xff);
-//                                                strcat(strToSend, strAux);
-                                                break;
-                                            case 12: //Offset Value
-//                                                strcat(strToSend, "4,");
-//                                                sprintf(strAux, "%u,", (ADC1.Params.OffsetValue>>24)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u,", (ADC1.Params.OffsetValue>>16)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u,", (ADC1.Params.OffsetValue>>8)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u\r", ADC1.Params.OffsetValue&0xff);
-//                                                strcat(strToSend, strAux);
-                                                break;
-                                            default:
-                                                gui.CMD_ErrorClass=2; //processing error
-                                                gui.CMD_ErrorNo=2; //register does not exist
-                                                gui.commandError=true;
-                                                break;
-                                        }
-                                        break;
                                     default:
                                         gui.CMD_ErrorClass=2; //processing error
                                         gui.CMD_ErrorNo=1; //table does not exist
@@ -231,58 +199,22 @@ void GUI_FSM(void){
                                 switch (tableIndex){
                                     case 0: //Application related registers
                                         switch (registerIndex){
-                                            case 0: //PLL to write
-//                                                appData.FM_RADIO.out.Reg1.PLL_H=gui.paramsList[2]&0x3F;
-//                                                appData.FM_RADIO.out.Reg2.PLL_L=gui.paramsList[3];
-//                                                
-//                                                strcat(strToSend, "2,");
-//                                                sprintf(strAux, "%u,", appData.FM_RADIO.out.Reg1.PLL_H);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u\r", appData.FM_RADIO.out.Reg2.PLL_L);
-//                                                strcat(strToSend, strAux);
+                                            case 0: //Number of bytes that will be received
+                                                appData.noOfBytes=(gui.paramsList[2]&0xFF)
+                                                        |gui.paramsList[3];
+                                                
+                                                strcat(strToSend, "2,");
+                                                sprintf(strAux, "%u,", (appData.noOfBytes>>8)&0xff);
+                                                strcat(strToSend, strAux);
+                                                sprintf(strAux, "%u\r", appData.noOfBytes&0xff);
+                                                strcat(strToSend, strAux);
                                                 break;
-                                            case 1: //SSL Search Stop Level
-//                                                appData.FM_RADIO.out.Reg3.SSL=gui.paramsList[2]&0x03;
-//                                                strcat(strToSend, "1,");
-//                                                sprintf(strAux, "%u\r", appData.FM_RADIO.out.Reg3.SSL);
-//                                                strcat(strToSend, strAux);
-                                                break;
+                                                
                                             default:
                                                 gui.CMD_ErrorClass=2; //processing error
                                                 gui.CMD_ErrorNo=2; //register does not exist
                                                 gui.commandError=true;
                                                 break;  
-                                        }
-                                        break;
-                                    case 1: //ADC related registers
-                                        switch (registerIndex){
-                                            case 0: //prescalar
-//                                                ADC1.Params.PSC=(uint8_t)(gui.paramsList[2]>=1);
-//                                                strcat(strToSend, "1,");
-//                                                sprintf(strAux, "%u\r", ADC1.Params.PSC);
-//                                                strcat(strToSend, strAux);
-//                                                break;
-                                            
-                                            case 12: //Offset Value
-//                                                ADC1.Params.OffsetValue=(gui.paramsList[2]<<24)
-//                                                        +(gui.paramsList[3]<<16)
-//                                                        +(gui.paramsList[4]<<8)
-//                                                        +gui.paramsList[5];
-//                                                strcat(strToSend, "4,");
-//                                                sprintf(strAux, "%u,", (ADC1.Params.OffsetValue>>24)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u,", (ADC1.Params.OffsetValue>>16)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u,", (ADC1.Params.OffsetValue>>8)&0xff);
-//                                                strcat(strToSend, strAux);
-//                                                sprintf(strAux, "%u\r", ADC1.Params.OffsetValue&0xff);
-//                                                strcat(strToSend, strAux);
-                                                break;
-                                            default:
-                                                gui.CMD_ErrorClass=2; //processing error
-                                                gui.CMD_ErrorNo=2; //register does not exist
-                                                gui.commandError=true;
-                                                break;
                                         }
                                         break;
                                     default:
@@ -302,7 +234,7 @@ void GUI_FSM(void){
                                 gui.commandError=true;
                             }  
                             break;
-                        case 'G': //get current values of all ADC channels
+                        case 'G': //get multiple data bytes (mix info)
                             if (true){
                                 //send back the response
                                 strcpy(strToSend, "G");
@@ -370,14 +302,6 @@ uint16_t gui_cmd_process(char in_c){
     static uint8_t crtParamValue=0;
     static bool formingNewParam=false;
     switch (gui.GUI_CMD_State){
-//        case PROCESS_INIT:
-//            gui.GUI_CMD_State=PROCESS_CMD_CHAR;
-//            gui.CMD_ErrorClass=0;
-//            gui.CMD_ErrorNo=0;
-//            gui.crtCommand=0; //no command
-//            gui.newCommandReady=false;
-//            gui.newCommandStarted=false;
-//            break;
         case PROCESS_CMD_CHAR:
             gui.CMD_ErrorClass=0;
             gui.CMD_ErrorNo=0;

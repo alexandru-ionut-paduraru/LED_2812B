@@ -164,7 +164,10 @@ typedef struct
 
     UStatus status;
     UCommand commands;
-
+    
+    uint16_t noOfBytes;
+    uint16_t transferTimeout;
+    uint16_t LED_R_Timeout;
 } APP_DATA;
 
 // *****************************************************************************

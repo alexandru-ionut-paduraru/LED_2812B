@@ -4,14 +4,14 @@
 
 
 project: LED_2812B
-creation_date: 2023-09-13T23:07:14.562+03:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2023-09-14T23:29:34.827+03:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.3.7
 mcc_core_version: v5.5.7
 mplabx_version: v6.05        # if MPLAB X plugin only
 harmony_version: v1.3.2
-compiler: XC32 (v4.09) 
+compiler: XC32 (v3.01) 
 
 modules:
     - {name: "csp", version: "v3.10.0"}

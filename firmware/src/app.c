@@ -28,6 +28,8 @@
 // *****************************************************************************
 
 #include "app.h"
+#include "peripheral/tmr/plib_tmr6.h"
+#include "peripheral/gpio/plib_gpio.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
@@ -67,8 +69,7 @@ APP_DATA appData;
 // *****************************************************************************
 
 
-/* TODO:  Add any necessary local functions.
-*/
+void TMR6_CB (uint32_t status, uintptr_t context);
 
 
 // *****************************************************************************
@@ -89,12 +90,10 @@ void APP_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
     appData.state = APP_STATE_INIT;
+    
 
-
-
-    /* TODO: Initialize your application's state machine and other
-     * parameters.
-     */
+    TMR6_CallbackRegister(&TMR6_CB,0);
+    TMR6_Start();
 }
 
 
@@ -142,9 +141,22 @@ void APP_Tasks ( void )
             break;
         }
     }
+    GUI_FSM();
 }
 
+/*******************************************************************************
+ Local Functions implementation
+ */
 
+void TMR6_CB (uint32_t status, uintptr_t context){
+    if(appData.transferTimeout>0) appData.transferTimeout--;
+    if(appData.LED_R_Timeout>0){
+        appData.LED_R_Timeout--;
+    }else{
+        appData.LED_R_Timeout=1000;
+        LED_R_Toggle();
+    }
+}
 /*******************************************************************************
  End of File
  */
