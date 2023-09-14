@@ -32,7 +32,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include "configuration.h"
-
+#include "GUI.h"
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -46,6 +46,82 @@ extern "C" {
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
+
+    typedef union{
+    uint8_t CMD_Byte[2];
+    struct {
+        //CMD_0
+        bool CMD_0:1;
+        //CMD_1
+        bool CMD_1:1;
+        //CMD_2
+        bool CMD_2:1;
+        //CMD_3
+        bool CMD_3:1;
+        //CMD_4
+        bool CMD_4:1;
+        //CMD_5
+        bool CMD_5:1;
+        //CMD_6
+        bool CMD_6:1;
+        //CMD_7
+        bool CMD_7:1;
+        //CMD_8
+        bool CMD_8:1;
+        //CMD_9
+        bool CMD_9:1;
+        //CMD_10
+        bool CMD_10:1;
+        //CMD_11
+        bool CMD_11:1;
+        //CMD_12
+        bool CMD_12:1;
+        //CMD_13
+        bool CMD_13:1;
+        //CMD_14
+        bool CMD_14:1;
+        //CMD_15
+        bool CMD_15:1;
+    };
+}UCommand;
+
+typedef union{
+    uint8_t STAT_Byte[2];
+    struct {
+        //STAT 0
+        bool STAT_0:1;
+        //STAT 1
+        bool STAT_1:1;
+        //STAT 2
+        bool STAT_2:1;
+        //STAT 3
+        bool STAT_3:1;
+        //STAT 4
+        bool STAT_4:1;
+        //STAT 5
+        bool STAT_5:1;
+        //STAT 6
+        bool STAT_6:1;
+        //STAT 7
+        bool STAT_7:1;
+        //STAT 8
+        bool STAT_8:1;
+        //STAT 9
+        bool STAT_9:1;
+        //STAT 10
+        bool STAT_10:1;
+        //STAT 11
+        bool STAT_11:1;
+        //STAT 13
+        bool STAT_12:1;
+        //STAT 13
+        bool STAT_13:1;
+        //STAT 14
+        bool STAT_14:1;
+        //STAT 15
+        bool STAT_15:1;
+    };
+}UStatus;
 
 // *****************************************************************************
 /* Application states
@@ -86,7 +162,8 @@ typedef struct
     /* The application's current state */
     APP_STATES state;
 
-    /* TODO: Define any additional data used by the application. */
+    UStatus status;
+    UCommand commands;
 
 } APP_DATA;
 
