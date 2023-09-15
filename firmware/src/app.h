@@ -51,7 +51,7 @@ extern "C" {
     uint8_t CMD_Byte[2];
     struct {
         //CMD_0
-        bool CMD_0:1;
+        bool CMD_StartUART_Transfer:1;
         //CMD_1
         bool CMD_1:1;
         //CMD_2
@@ -168,6 +168,8 @@ typedef struct
     uint16_t noOfBytes;
     uint16_t transferTimeout;
     uint16_t LED_R_Timeout;
+    bool transferMode;
+    bool transferTimeoutFlag;
 } APP_DATA;
 
 // *****************************************************************************

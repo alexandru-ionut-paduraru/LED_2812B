@@ -265,8 +265,8 @@ void DMAC_Initialize( void )
 
 
     /* DMA channel 1 configuration */
-    /* CHPRI = 1, CHAEN= 0, CHCHN= 0, CHCHNS= 0x0, CHAED= 0 */
-    DCH1CON = 0x1;
+    /* CHPRI = 0, CHAEN= 0, CHCHN= 0, CHCHNS= 0x0, CHAED= 0 */
+    DCH1CON = 0x0;
     /* CHSIRQ = 111, SIRQEN = 1 */
     DCH1ECON = 0x6f10;
     /* CHBCIE = 1, CHTAIE=1, CHERIE=1, CHSHIE= 0, CHDHIE= 0 */

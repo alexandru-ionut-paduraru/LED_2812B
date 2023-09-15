@@ -30,6 +30,7 @@
 #include "app.h"
 #include "peripheral/tmr/plib_tmr6.h"
 #include "peripheral/gpio/plib_gpio.h"
+#include "peripheral/dmac/plib_dmac.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
@@ -52,7 +53,7 @@
 */
 
 APP_DATA appData;
-
+uint8_t __attribute__((coherent)) arrLedBuffer[4000];
 // *****************************************************************************
 // *****************************************************************************
 // Section: Application Callback Functions
@@ -70,7 +71,8 @@ APP_DATA appData;
 
 
 void TMR6_CB (uint32_t status, uintptr_t context);
-
+void DMAC_0_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle);
+void DMAC_1_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle);
 
 // *****************************************************************************
 // *****************************************************************************
@@ -94,6 +96,10 @@ void APP_Initialize ( void )
 
     TMR6_CallbackRegister(&TMR6_CB,0);
     TMR6_Start();
+    
+    //Register DMAC Callback functions
+    DMAC_ChannelCallbackRegister(DMAC_CHANNEL_0, &DMAC_0_CB, 0 );
+    DMAC_ChannelCallbackRegister(DMAC_CHANNEL_1, &DMAC_1_CB, 0 );
 }
 
 
@@ -142,6 +148,33 @@ void APP_Tasks ( void )
         }
     }
     GUI_FSM();
+    
+    if (appData.commands.CMD_StartUART_Transfer){
+        appData.commands.CMD_StartUART_Transfer=false;
+        //enter UART data transfer mode
+        appData.transferMode=true;
+        appData.transferTimeoutFlag=false;
+        //Configure DMA Transfer
+        DMAC_ChannelTransfer(DMAC_CHANNEL_0, (void*)(&U6RXREG), 1, arrLedBuffer, appData.noOfBytes, 1);
+        LED_2_Set();
+        LED_3_Set();
+        LED_1_Clear();
+        //Signal the PC
+        
+        //Set timeout interval
+        appData.transferTimeout=5000; //5sec
+    }
+    
+    //analyze timeout condition
+    if (appData.transferMode && (appData.transferTimeout==0)){
+        appData.transferMode=false;
+        appData.transferTimeoutFlag=true;
+        DMAC_ChannelDisable(DMAC_CHANNEL_0);
+        DMAC_ChannelDisable(DMAC_CHANNEL_1);
+        LED_2_Set();
+        LED_3_Set();
+        LED_1_Set();
+    }
 }
 
 /*******************************************************************************
@@ -155,6 +188,29 @@ void TMR6_CB (uint32_t status, uintptr_t context){
     }else{
         appData.LED_R_Timeout=1000;
         LED_R_Toggle();
+    }
+}
+
+void DMAC_0_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle){
+    if(status==DMAC_TRANSFER_EVENT_COMPLETE){
+        //disable DMA channel
+        DMAC_ChannelDisable(DMAC_CHANNEL_0);
+        //Configure next transfer
+        SPI1BUF=0; //trigger first byte transfer
+        DMAC_ChannelTransfer(DMAC_CHANNEL_1, &arrLedBuffer[0], appData.noOfBytes, (void*)(&SPI1BUF), 1, 1);
+        LED_2_Clear();
+        //TO DO - delete the following lines after tests
+        //appData.transferMode=false;
+    }
+}
+
+void DMAC_1_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle){
+    //disable DMA channel
+    if(status==DMAC_TRANSFER_EVENT_COMPLETE){
+    DMAC_ChannelDisable(DMAC_CHANNEL_1);
+        appData.transferMode=false;
+        LED_1_Set();
+        LED_3_Clear();
     }
 }
 /*******************************************************************************

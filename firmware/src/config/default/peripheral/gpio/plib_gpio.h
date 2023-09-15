@@ -98,6 +98,15 @@
 #define CS1_Get()               ((PORTD >> 9) & 0x1)
 #define CS1_PIN                  GPIO_PIN_RD9
 
+/*** Macros for LED_3 pin ***/
+#define LED_3_Set()               (LATJSET = (1<<3))
+#define LED_3_Clear()             (LATJCLR = (1<<3))
+#define LED_3_Toggle()            (LATJINV= (1<<3))
+#define LED_3_OutputEnable()      (TRISJCLR = (1<<3))
+#define LED_3_InputEnable()       (TRISJSET = (1<<3))
+#define LED_3_Get()               ((PORTJ >> 3) & 0x1)
+#define LED_3_PIN                  GPIO_PIN_RJ3
+
 /*** Macros for LED_2 pin ***/
 #define LED_2_Set()               (LATKSET = (1<<7))
 #define LED_2_Clear()             (LATKCLR = (1<<7))
