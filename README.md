@@ -30,16 +30,11 @@ Encoding:
 
 Let's say that we have to set LED with color 0xFF00FF (which is <span style="color:#FF00FF;">purple</span>).
 <table>
-  <tr><th>Color</th><th>Value</th><th>Byte</th>
-    <th>
-      <table>
-        <tr><td></td><td>b7</td><td>b6</td><td>b5</td><td>b4</td><td>b3</td><td>b2</td><td>b1</td><td>b0</td></tr>
-      </table>
-    </th>
-  </tr>
+  <tr><th>Color</th><th>Value</th><th>Byte</th><th></th></tr>
   <tr><td>Green</td><td>0</td><td>0</td>
     <td>
       <table>
+        <tr><td></td><th>b7</th><th>b6</th><th>b5</th><th>b4</th><th>b3</th><th>b2</th><th>b1</th><td>b0</th></tr>
         <tr><td>+0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
         <tr><td>+1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
         <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
@@ -48,15 +43,25 @@ Let's say that we have to set LED with color 0xFF00FF (which is <span style="col
     </td>
   </tr>
   <tr><td>Red</td><td>255</td><td>4</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>
+      <table>
+        <tr><td></td><th>b7</th><th>b6</th><th>b5</th><th>b4</th><th>b3</th><th>b2</th><th>b1</th><td>b0</th></tr>
+        <tr><td>+0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      </table>
+    </td>
   </tr>
   <tr><td>Blue</td><td>255</td><td>8</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>
+      <table>
+        <tr><td></td><th>b7</th><th>b6</th><th>b5</th><th>b4</th><th>b3</th><th>b2</th><th>b1</th><td>b0</th></tr>
+        <tr><td>+0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      </table>
+    </td>
   </tr>
 </table>
