@@ -25,3 +25,7 @@ Each bit of color intensity bytes is encoded with 4 bits in final form (that wil
 Encoding:
 - bit 0 is **0100**
 - bit 1 is **0110**
+
+#### Example 1
+
+Let's say that we have to set LED with color 0xFF00FF (which is <span color=purple">purple<span>).
