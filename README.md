@@ -1,4 +1,5 @@
 # LED_2812B
+
 WCMCU-2812B LED control
 <h1>Description</h1>
 <p>This project uses the folowing main hardware components:</p>
@@ -7,5 +8,16 @@ WCMCU-2812B LED control
   <li>String of several WCMCU2812-B RGB LED</li>
 </ol>
 
-<h2>How does it work...</h2>
-<p>A PC application sends either row data or formatted data that will be forwarded by the microcontroller to the LED string.</p>
+### How does it works...
+
+A Python based desktop application sends the following information to the microcontroller:
+
+1. The number of data bytes to be expected.
+2. A command (CMD_0) for the microcontroller to enter in *"Transfer Mode"*.
+3. The bytes array representing the encoded form of GRB colors (in this order), for all LEDs.
+
+#### LED color encoding
+
+For each LED there are be 3 data bytes representing the intensity of Green, Red and Blue colors.
+
+Each bit of color intensity bytes is encoded with 4 bits in final form (that will be transfered to LEDs).
