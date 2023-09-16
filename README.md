@@ -28,4 +28,4 @@ Encoding:
 
 #### Example 1
 
-Let's say that we have to set LED with color 0xFF00FF (which is <pre color="purple">purple</pre>).
+Let's say that we have to set LED with color 0xFF00FF (which is <span color="purple">purple</span>).
