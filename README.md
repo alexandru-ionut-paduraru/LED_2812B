@@ -29,3 +29,34 @@ Encoding:
 #### Example 1
 
 Let's say that we have to set LED with color 0xFF00FF (which is <span style="color:#FF00FF;">purple</span>).
+<table>
+  <tr><th>Color</th><th>Value</th><th>Byte</th>
+    <th>
+      <table>
+        <tr><td></td><td>b7</td><td>b6</td><td>b5</td><td>b4</td><td>b3</td><td>b2</td><td>b1</td><td>b0</td></tr>
+      </table>
+    </th>
+  </tr>
+  <tr><td>Green</td><td>0</td><td>0</td>
+    <td>
+      <table>
+        <tr><td>+0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      </table>
+    </td>
+  </tr>
+  <tr><td>Red</td><td>255</td><td>4</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr><td>Blue</td><td>255</td><td>8</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
