@@ -1,6 +1,7 @@
 from cmath import inf
 import serial
 import serial.tools.list_ports
+import time
 #import eel
 
 com_ports=[] #this will be filled-in by check_com_ports function
@@ -50,6 +51,10 @@ def py_com_connect(PortNo):
         ser.open()
         
         if ser.is_open: 
+            # print(ser.write(f'i\r'.encode('UTF-8')))
+            # time.sleep(0.2)
+            # ser.flush()
+
             CMD_String="i\r"
             print("Port opened")
             ReleaseToken()

@@ -147,7 +147,9 @@ void APP_Tasks ( void )
             break;
         }
     }
-    GUI_FSM();
+    if(!appData.transferMode){
+        GUI_FSM();
+    }
     
     if (appData.commands.CMD_StartUART_Transfer){
         appData.commands.CMD_StartUART_Transfer=false;
@@ -183,16 +185,16 @@ void APP_Tasks ( void )
 
 void TMR6_CB (uint32_t status, uintptr_t context){
     if(appData.transferTimeout>0) appData.transferTimeout--;
-    if(appData.LED_R_Timeout>0){
-        appData.LED_R_Timeout--;
-    }else{
-        appData.LED_R_Timeout=1000;
-        LED_R_Toggle();
-    }
+//    if(appData.LED_R_Timeout>0){
+//        appData.LED_R_Timeout--;
+//    }else{
+//        appData.LED_R_Timeout=1000;
+//        LED_R_Toggle();
+//    }
 }
 
 void DMAC_0_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle){
-    if(status==DMAC_TRANSFER_EVENT_COMPLETE){
+    //if(status==DMAC_TRANSFER_EVENT_COMPLETE){
         //disable DMA channel
         DMAC_ChannelDisable(DMAC_CHANNEL_0);
         //Configure next transfer
@@ -201,17 +203,17 @@ void DMAC_0_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle){
         LED_2_Clear();
         //TO DO - delete the following lines after tests
         //appData.transferMode=false;
-    }
+    //}
 }
 
 void DMAC_1_CB (DMAC_TRANSFER_EVENT status, uintptr_t contextHandle){
     //disable DMA channel
-    if(status==DMAC_TRANSFER_EVENT_COMPLETE){
-    DMAC_ChannelDisable(DMAC_CHANNEL_1);
+    //if(status==DMAC_TRANSFER_EVENT_COMPLETE){
+        DMAC_ChannelDisable(DMAC_CHANNEL_1);
         appData.transferMode=false;
         LED_1_Set();
         LED_3_Clear();
-    }
+    //}
 }
 /*******************************************************************************
  End of File

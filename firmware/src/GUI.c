@@ -200,7 +200,7 @@ void GUI_FSM(void){
                                     case 0: //Application related registers
                                         switch (registerIndex){
                                             case 0: //Number of bytes that will be received
-                                                appData.noOfBytes=(gui.paramsList[2]&0xFF)
+                                                appData.noOfBytes=(uint16_t)(gui.paramsList[2]&0xFF)<<8
                                                         |gui.paramsList[3];
                                                 
                                                 strcat(strToSend, "2,");
