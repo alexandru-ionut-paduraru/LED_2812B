@@ -20,4 +20,8 @@ A Python based desktop application sends the following information to the microc
 
 For each LED there are be 3 data bytes representing the intensity of Green, Red and Blue colors.
 
-Each bit of color intensity bytes is encoded with 4 bits in final form (that will be transfered to LEDs).
+Each bit of color intensity bytes is encoded with 4 bits in final form (that will be transfered to LEDs). In the end, a singe LED will need 12 bytes to be encoded.
+
+Encoding:
+- bit 0 is **0100**
+- bit 1 is **0110**
