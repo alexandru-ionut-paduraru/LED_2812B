@@ -29,7 +29,8 @@ Encoding:
 #### Example 1
 
 Let's say that we have to set LED with color 0xC500F4 (which is <span style="color:#FF00FF;">purple</span>).
-<table>
+
+<table class="heatMap">
   <tr><th>Color</th><th>Value</th><th>Byte</th><th></th></tr>
   <tr><td>Green</td><td>0<br>0b00000000</td><td>0</td>
     <td>
@@ -46,10 +47,10 @@ Let's say that we have to set LED with color 0xC500F4 (which is <span style="col
     <td>
       <table>
         <tr><td></td><th>b7</th><th>b6</th><th>b5</th><th>b4</th><th>b3</th><th>b2</th><th>b1</th><td>b0</th></tr>
-        <tr><td>+0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
         <tr><td>+1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-        <tr><td>+3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>+3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
       </table>
     </td>
   </tr>
@@ -57,9 +58,9 @@ Let's say that we have to set LED with color 0xC500F4 (which is <span style="col
     <td>
       <table>
         <tr><td></td><th>b7</th><th>b6</th><th>b5</th><th>b4</th><th>b3</th><th>b2</th><th>b1</th><th>b0</th></tr>
-        <tr><td>+0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
         <tr><td>+1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>+2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
         <tr><td>+3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
       </table>
     </td>
